@@ -1,7 +1,9 @@
 import streamlit as st
 import torch
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pl
+import neat
+import neat.nn
 from evolved_model import EvolvedNN, winner, config  # import your model and genome
 
 # Load trained model
