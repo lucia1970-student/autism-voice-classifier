@@ -8,6 +8,10 @@ from scipy.stats import variation
 from evolved_model import EvolvedNN, winner, config
 import neat
 from collections import defaultdict
+import pandas as pd
+from io import StringIO
+
+prediction_summary = []
 
 # Load trained model
 neat_net = neat.nn.FeedForwardNetwork.create(winner, config)
@@ -62,7 +66,8 @@ feat4 = st.slider("Mean HNR", 0.0, 100.0, 20.0)
 
 manual_input = [feat1, feat2, feat3, feat4]
 
-# ========== PREDICTION ==========
+"""
+# ========== PREDICTION =========
 if st.button("Predict"):
     input_data = features if features else manual_input
     input_tensor = torch.tensor([input_data], dtype=torch.float32)
@@ -71,12 +76,35 @@ if st.button("Predict"):
         pred_class = torch.argmax(output, dim=1).item()
         label = "Autistic" if pred_class == 1 else "Non-Autistic"
         confidence = torch.softmax(output, dim=1).squeeze().tolist()
+
+        # Show prediction results
         st.success(f"**Predicted Class:** {label}")
         st.info(f"Confidence: Non-Autistic = {confidence[0]:.2f}, Autistic = {confidence[1]:.2f}")
 
+        # Display explainability table
+        st.subheader("Prediction Details")
+        feature_names = ["f0 (Hz)", "Jitter", "Shimmer", "Mean HNR (dB)"]
+        df = pd.DataFrame({
+            "Feature": feature_names,
+            "Value": input_data
+        })
+        st.table(df)
+
+        # Add to prediction summary
+        prediction_summary.append({
+            "Audio File": audio_file.name if audio_file else "Manual Entry",
+            "f0": input_data[0],
+            "Jitter": input_data[1],
+            "Shimmer": input_data[2],
+            "Mean HNR": input_data[3],
+            "Prediction": label,
+            "Confidence_NonAutistic": confidence[0],
+            "Confidence_Autistic": confidence[1]
+        })
 # ========== FEATURE IMPORTANCE ==========
 st.header("Feature Importance (Input Sensitivity)")
 input_sensitivity = defaultdict(float)
+input_labels = {-1: "f0 (Hz)", -2: "Jitter", -3: "Shimmer", -4: "HNR (dB)"}
 
 for (in_node, out_node), conn in winner.connections.items():
     if conn.enabled and in_node < 0:
@@ -92,5 +120,12 @@ ax.set_title("Input Sensitivity (Total Absolute Weight)")
 ax.set_ylabel("Influence")
 ax.set_xlabel("Features")
 st.pyplot(fig)
+
+# ========== EXPORT SUMMARY ==========
+if prediction_summary:
+    st.subheader("Download Prediction Report")
+    summary_df = pd.DataFrame(prediction_summary)
+    csv = summary_df.to_csv(index=False)
+    st.download_button("Download CSV Report", csv, "prediction_summary.csv", "text/csv")
 
                            
