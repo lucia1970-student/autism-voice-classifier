@@ -66,7 +66,6 @@ feat4 = st.slider("Mean HNR", 0.0, 100.0, 20.0)
 
 manual_input = [feat1, feat2, feat3, feat4]
 
-"""
 # ========== PREDICTION =========
 if st.button("Predict"):
     input_data = features if features else manual_input
