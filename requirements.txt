@@ -3,4 +3,7 @@ torch
 matplotlib
 numpy
 neat-python
+librosa
+soundfile
+scipy
 
