@@ -1,19 +1,18 @@
 import neat
-import torch
-import torch.nn as nn
 import pickle
+import torch.nn as nn
+import torch
 
 # Load NEAT config
-config_path = "neat_cfg_vis.txt"
 config = neat.Config(
     neat.DefaultGenome,
     neat.DefaultReproduction,
     neat.DefaultSpeciesSet,
     neat.DefaultStagnation,
-    config_path
+    "neat_cfg_vis.txt"  # Make sure this file is in the same directory
 )
 
-# Load the winner genome
+# Load winner genome
 with open("winner_genome.pkl", "rb") as f:
     winner = pickle.load(f)
 
