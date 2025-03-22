@@ -1,27 +1,3 @@
-import neat
-import torch
-import torch.nn as nn
-import pickle
-
-# Load NEAT config
-config_path = "neat_cfg_vis.txt"
-config = neat.Config(
-    neat.DefaultGenome,
-    neat.DefaultReproduction,
-    neat.DefaultSpeciesSet,
-    neat.DefaultStagnation,
-    config_path
-)
-
-# Load the winner genome
-with open("winner_genome.pkl", "rb") as f:
-    winner = pickle.load(f)
-
-# Define the evolved PyTorch model
-class EvolvedNN(nn.Module):
-    def __init__(self, neat_net, genome):
-        super().__init__()
-        self.layers = nn.ModuleList()
 streamlit
 torch
 matplotlib
