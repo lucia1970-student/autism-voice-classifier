@@ -2,7 +2,7 @@ import streamlit as st
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-#from evolved_model import EvolvedNN, winner, config  # import your model and genome
+from evolved_model import EvolvedNN, winner, config  # import your model and genome
 
 # Load trained model
 neat_net = neat.nn.FeedForwardNetwork.create(winner, config)
