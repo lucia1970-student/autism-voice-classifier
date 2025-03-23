@@ -23,7 +23,7 @@ custom_html = """
 .div {
   display: flex;
   width: 100%;
-  height: 250px;
+  height: 300px;
   justify-content: center;
 }
 
