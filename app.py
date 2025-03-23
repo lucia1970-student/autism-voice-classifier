@@ -22,7 +22,8 @@ custom_html = """
 <style>
 .div {
   display: flex;
-  height: 200px;
+  width: 100%;
+  height: 250px;
   justify-content: center;
 }
 
