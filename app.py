@@ -23,8 +23,8 @@ custom_html = """
     .banner {
         width: 848px;
         height: 200px;
-        overflow: none;
         justify_content: center;
+        align-items: center;
     }
     .banner_img img {
         display: flex;
