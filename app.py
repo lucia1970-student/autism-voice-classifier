@@ -20,17 +20,15 @@ custom_html = """
     <img class="banner_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUhT5ANMhyQD_SqnxVATfMlLI4G2Aqpo5SruzQS0z-6g&usqp=CAE&s" alt="Banner Image">
 </div>
 <style>
-    .banner {
-        width: 848px;
-        height: 200px;
-        justify_content: center;
-        align-items: center;
-    }
-    .banner_img img {
-        display: flex;
-        width: 208px;
-        height: 160px;
-    }
+.div {
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 50%;
+}
+
 </style>
 """
 # Display the custom HTML
