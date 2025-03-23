@@ -27,8 +27,8 @@ custom_html = """
     }
     .banner img {
         display: flex;
-        justify-content: center;
-        width: 108px;
+        justify-content: right;
+        width: 208px;
         height: 160px;
     }
 </style>
