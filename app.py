@@ -22,8 +22,8 @@ custom_html = """
 <style>
     .banner {
         width: 848px;
-        height: 160px;
-        overflow: hidden;
+        height: 200px;
+        overflow: none;
     }
     .banner img {
         display: flex;
