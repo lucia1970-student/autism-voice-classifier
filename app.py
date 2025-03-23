@@ -21,6 +21,8 @@ custom_html = """
 </div>
 <style>
     .banner {
+        display: flex;
+        justify-content: center;
         width: 208px;
         height: 160px;
         overflow: hidden;
