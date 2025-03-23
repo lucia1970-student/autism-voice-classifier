@@ -146,7 +146,7 @@ st.pyplot(fig)
 
 # ========== EXPORT SUMMARY ==========
 if prediction_summary:
-    st.subheader("Download Prediction Report")
+    st.subheader("Download Status Report")
     summary_df = pd.DataFrame(prediction_summary)
     csv = summary_df.to_csv(index=False)
     st.download_button("Download CSV Report", csv, "prediction_summary.csv", "text/csv")
