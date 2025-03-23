@@ -82,7 +82,7 @@ if audio_file:
         st.error(f"Error processing audio: {e}")
 
 # ========== MANUAL FEATURE SLIDERS ==========
-st.header("Manually update accoustic feature(s)")
+st.header("Manually update voice accoustic feature(s)")
 feat1 = st.slider("f0 (Fundamental Frequency)", 50.0, 400.0, 150.0)
 feat2 = st.slider("Jitter", 0.0, 0.2, 0.02)
 feat3 = st.slider("Shimmer", 0.0, 0.2, 0.03)
@@ -105,7 +105,7 @@ if st.button("Predict"):
         st.info(f"Confidence: Non-Autistic = {confidence[0]:.2f}, Autistic = {confidence[1]:.2f}")
 
         # Display explainability table
-        st.subheader("Accoustic Feature Details")
+        st.subheader("Voice Accoustic Feature Details")
         feature_names = ["f0 (Hz)", "Jitter", "Shimmer", "Mean HNR (dB)"]
         df = pd.DataFrame({
             "Feature": feature_names,
@@ -125,7 +125,7 @@ if st.button("Predict"):
             "Confidence_Autistic": confidence[1]
         })
 # ========== FEATURE IMPORTANCE ==========
-st.header("Feature Importance (Input Sensitivity)")
+st.header("Voice Accoustic Sensitivity")
 input_sensitivity = defaultdict(float)
 input_labels = {-1: "f0 (Hz)", -2: "Jitter", -3: "Shimmer", -4: "HNR (dB)"}
 
