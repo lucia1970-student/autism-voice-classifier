@@ -11,7 +11,8 @@ from collections import defaultdict
 import pandas as pd
 from io import StringIO
 
-prediction_summary = []
+st.set_page_config(page_title="Autism Voice Classifier", layout="centered")
+st.title("Autism Voice Classifier Dashboard")
 
 # Custom HTML/CSS for the banner
 custom_html = """
@@ -33,6 +34,7 @@ custom_html = """
 # Display the custom HTML
 st.components.v1.html(custom_html)
 
+prediction_summary = []
 
 # Load trained model
 neat_net = neat.nn.FeedForwardNetwork.create(winner, config)
@@ -40,8 +42,6 @@ model = EvolvedNN(neat_net, winner)
 model.load_state_dict(torch.load("evolved_neat_model.pth", map_location=torch.device('cpu')))
 model.eval()
 
-st.set_page_config(page_title="Autism Voice Classifier", layout="centered")
-st.title("Autism Voice Classifier Dashboard")
 st.markdown("Upload a `.wav` file or manually adjust features to predict likelihood of Autism.")
 
 # ========== AUDIO FILE UPLOAD ==========
