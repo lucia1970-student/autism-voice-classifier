@@ -24,10 +24,10 @@ custom_html = """
         width: 848px;
         height: 200px;
         overflow: none;
+        justify_content: center;
     }
     .banner_img img {
         display: flex;
-        justify-content: right;
         width: 208px;
         height: 160px;
     }
