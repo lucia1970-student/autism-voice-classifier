@@ -21,14 +21,14 @@ custom_html = """
 </div>
 <style>
     .banner {
-        width: 848px;
+        width: 424px;
         height: 160px;
         overflow: hidden;
     }
     .banner img {
         display: flex;
         justify-content: center;
-        width: 100%;
+        width: 50%;
         object-fit: cover;
     }
 </style>
