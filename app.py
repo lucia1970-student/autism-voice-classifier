@@ -21,7 +21,7 @@ custom_html = """
 </div>
 <style>
     .banner {
-        width: 208px;
+        width: 848px;
         height: 160px;
         overflow: hidden;
     }
