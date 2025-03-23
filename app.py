@@ -16,8 +16,8 @@ st.title("Autism Voice Classifier Dashboard")
 
 # Custom HTML/CSS for the banner
 custom_html = """
-<div class="banner">
-    <img class="banner_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUhT5ANMhyQD_SqnxVATfMlLI4G2Aqpo5SruzQS0z-6g&usqp=CAE&s" alt="Banner Image">
+<div class="div">
+    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUhT5ANMhyQD_SqnxVATfMlLI4G2Aqpo5SruzQS0z-6g&usqp=CAE&s" alt="Banner Image">
 </div>
 <style>
 .div {
