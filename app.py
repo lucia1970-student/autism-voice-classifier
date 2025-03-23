@@ -82,7 +82,7 @@ if audio_file:
         st.error(f"Error processing audio: {e}")
 
 # ========== MANUAL FEATURE SLIDERS ==========
-st.header("Or enter features manually")
+st.header("Manually update features ")
 feat1 = st.slider("f0 (Fundamental Frequency)", 50.0, 400.0, 150.0)
 feat2 = st.slider("Jitter", 0.0, 0.2, 0.02)
 feat3 = st.slider("Shimmer", 0.0, 0.2, 0.03)
