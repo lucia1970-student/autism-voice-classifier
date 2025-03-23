@@ -13,6 +13,27 @@ from io import StringIO
 
 prediction_summary = []
 
+# Custom HTML/CSS for the banner
+custom_html = """
+<div class="banner">
+    <img src="autism_banner.jpg" alt="Banner Image">
+</div>
+<style>
+    .banner {
+        width: 160%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .banner img {
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+"""
+# Display the custom HTML
+st.components.v1.html(custom_html)
+
+
 # Load trained model
 neat_net = neat.nn.FeedForwardNetwork.create(winner, config)
 model = EvolvedNN(neat_net, winner)
