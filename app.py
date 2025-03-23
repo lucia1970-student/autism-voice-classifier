@@ -29,7 +29,7 @@ custom_html = """
 
 .img {
   width: 50%;
-  height: 100%;
+  height: 75%;
 }
 
 </style>
