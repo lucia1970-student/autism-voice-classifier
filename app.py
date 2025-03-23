@@ -16,7 +16,7 @@ prediction_summary = []
 # Custom HTML/CSS for the banner
 custom_html = """
 <div class="banner">
-    <img src="./autism_banner.png" alt="Banner Image">
+    <img src="/mount/src/autism-voice-classifier/autism_banner.png" alt="Banner Image">
 </div>
 <style>
     .banner {
