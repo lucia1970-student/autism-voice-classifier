@@ -53,12 +53,12 @@ audio_file = st.file_uploader("Upload a .wav file", type=["wav"])
 def extract_features_from_audio(file):
     y, sr = librosa.load(file, sr=None)
 
-    # 1. f0 estimation using librosa.yin
-    f0 = librosa.yin(y, fmin=50, fmax=500, sr=sr)
-    f0_mean = np.mean(f0)
+    # 1. avg_F1 estimation using librosa.yin
+    avg_F1 = librosa.yin(y, fmin=50, fmax=500, sr=sr)
+    avg_F1 = np.mean(f0)
 
-    # 2. Jitter = relative variation in f0
-    jitter = variation(f0)  # standard deviation / mean
+    # 2. Jitter = relative variation in avg_F1
+    jitter_s = variation(avg_F1)  # standard deviation / mean
 
     # 3. Shimmer = variation in amplitude envelope
     amplitude_env = np.abs(y)
@@ -67,10 +67,10 @@ def extract_features_from_audio(file):
     # 4. HNR (approximate): harmonic-to-noise ratio via energy stats
     signal_energy = np.sum(y ** 2)
     noise_energy = np.sum((y - np.mean(y)) ** 2)
-    hnr = 10 * np.log10(signal_energy / (noise_energy + 1e-6))
-    hnr = np.clip(hnr, 0, 100)  # avoid wild spikes
+    mean_hnr = 10 * np.log10(signal_energy / (noise_energy + 1e-6))
+    mean_hnr = np.clip(hnr, 0, 100)  # avoid wild spikes
 
-    return [f0_mean, jitter, shimmer, hnr]
+    return [avg_F1, jitter_s, shimmer, mean_hnr]
 
 features = None
 if audio_file:
@@ -83,10 +83,10 @@ if audio_file:
 
 # ========== MANUAL FEATURE SLIDERS ==========
 st.header("Manually update voice accoustic feature(s)")
-feat1 = st.slider("f0 (Fundamental Frequency)", 50.0, 400.0, 150.0)
-feat2 = st.slider("Jitter", 0.0, 0.2, 0.02)
-feat3 = st.slider("Shimmer", 0.0, 0.2, 0.03)
-feat4 = st.slider("Mean HNR", 0.0, 100.0, 20.0)
+feat1 = st.slider("avg_F1 (Fundamental Frequency)", 50.0, 400.0, 150.0)
+feat2 = st.slider("jitter_s", 0.0, 0.2, 0.02)
+feat3 = st.slider("shimmer", 0.0, 0.2, 0.03)
+feat4 = st.slider("mean_hnr", 0.0, 100.0, 20.0)
 
 manual_input = [feat1, feat2, feat3, feat4]
 
@@ -116,10 +116,10 @@ if st.button("Predict"):
         # Add to prediction summary
         prediction_summary.append({
             "Audio File": audio_file.name if audio_file else "Manual Entry",
-            "f0": input_data[0],
-            "Jitter": input_data[1],
-            "Shimmer": input_data[2],
-            "Mean HNR": input_data[3],
+            "avg_F1": input_data[0],
+            "jitter_s": input_data[1],
+            "shimmer": input_data[2],
+            "mean_hnr": input_data[3],
             "Prediction": label,
             "Confidence_NonAutistic": confidence[0],
             "Confidence_Autistic": confidence[1]
@@ -127,13 +127,13 @@ if st.button("Predict"):
 # ========== FEATURE IMPORTANCE ==========
 st.header("Voice Accoustic Sensitivity")
 input_sensitivity = defaultdict(float)
-input_labels = {-1: "f0 (Hz)", -2: "Jitter", -3: "Shimmer", -4: "HNR (dB)"}
+input_labels = {-1: "avg_F1 (Hz)", -2: "jitter_s", -3: "shimmer", -4: "mean_hnr (dB)"}
 
 for (in_node, out_node), conn in winner.connections.items():
     if conn.enabled and in_node < 0:
         input_sensitivity[in_node] += abs(conn.weight)
 
-input_labels = {-1: "f0", -2: "jitter", -3: "shimmer", -4: "HNR"}
+input_labels = {-1: "avg_F1", -2: "jitter_s", -3: "shimmer", -4: "mean_hnr"}
 labels = [input_labels[i] for i in sorted(input_sensitivity.keys())]
 sensitivities = [input_sensitivity[i] for i in sorted(input_sensitivity.keys())]
 
