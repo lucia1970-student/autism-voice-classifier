@@ -77,7 +77,7 @@ if audio_file:
     try:
         features = extract_features_from_audio(audio_file)
         st.success("Audio processed. Features extracted and ready for prediction.")
-        st.write(f"**Extracted Features:**\n\nf0 = {features[0]:.3f}, jitter = {features[1]:.4f}, shimmer = {features[2]:.4f}, HNR = {features[3]:.2f}")
+        st.write(f"**Extracted Features:**\n\navg_F1 = {features[0]:.3f}, jitter_s = {features[1]:.4f}, shimmer = {features[2]:.4f}, mean_hnr = {features[3]:.2f}")
     except Exception as e:
         st.error(f"Error processing audio: {e}")
 
@@ -106,7 +106,7 @@ if st.button("Predict"):
 
         # Display explainability table
         st.subheader("Voice Accoustic Feature Details")
-        feature_names = ["f0 (Hz)", "Jitter", "Shimmer", "Mean HNR (dB)"]
+        feature_names = ["avg_F1 (Hz)", "jitter_s", "shimmer", "mean_hnr (dB)"]
         df = pd.DataFrame({
             "Feature": feature_names,
             "Value": input_data
