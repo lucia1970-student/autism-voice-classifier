@@ -68,7 +68,7 @@ def extract_features_from_audio(file):
     signal_energy = np.sum(y ** 2)
     noise_energy = np.sum((y - np.mean(y)) ** 2)
     mean_hnr = 10 * np.log10(signal_energy / (noise_energy + 1e-6))
-    mean_hnr = np.clip(hnr, 0, 100)  # avoid wild spikes
+    mean_hnr = np.clip(mean_hnr, 0, 100)  # avoid wild spikes
 
     return [avg_F1, jitter_s, shimmer, mean_hnr]
 
