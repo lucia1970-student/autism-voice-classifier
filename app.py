@@ -55,7 +55,7 @@ def extract_features_from_audio(file):
 
     # 1. avg_F1 estimation using librosa.yin
     avg_F1 = librosa.yin(y, fmin=50, fmax=500, sr=sr)
-    avg_F1 = np.mean(f0)
+    avg_F1 = np.mean(avg_F1)
 
     # 2. Jitter = relative variation in avg_F1
     jitter_s = variation(avg_F1)  # standard deviation / mean
