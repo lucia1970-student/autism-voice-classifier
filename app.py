@@ -13,8 +13,8 @@ from io import StringIO
 
 st.set_page_config(page_title="Autism Voice Classifier", layout="centered")
 
-st.markdown("<h1 style='text-align: center; color: red;'>Autism Voice Classifier</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center; color: red;'>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)</h2>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Autism Voice Classifier</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center;'>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)</h2>", unsafe_allow_html=True)
 
 #st.title("Autism Voice Classifier")
 #st.subheader("Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)")
