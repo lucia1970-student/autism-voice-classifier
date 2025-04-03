@@ -12,7 +12,7 @@ import pandas as pd
 from io import StringIO
 
 st.set_page_config(page_title="Autism Voice Classifier", layout="centered")
-st.title("Autism Voice Classifier<br/>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)")
+st.title("Autism Voice Classifier<br>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)")
 
 # Custom HTML/CSS for the banner
 custom_html = """
