@@ -88,11 +88,10 @@ if audio_file:
 
 # ========== MANUAL FEATURE SLIDERS ==========
 st.header("Manually update voice accoustic feature(s)")
-feat1 = st.slider("avg_F1 (Fundamental Frequency)", 50.0, 400.0, 150.0)
-feat2 = st.slider("jitter_s", 0.0, 0.2, 0.02)
-feat3 = st.slider("shimmer", 0.0, 0.2, 0.03)
-feat4 = st.slider("mean_hnr", 0.0, 100.0, 20.0)
-
+feat1 = st.slider("avg_F1", 200.0, 1500.0, 350.0)
+feat2 = st.slider("jitter_s", -5.0, 5.0, 0.0)
+feat3 = st.slider("shimmer", -5.0, 5.0, 0.0)
+feat4 = st.slider("mean_hnr", -5.0, 100.0, 0.0)
 manual_input = [feat1, feat2, feat3, feat4]
 
 # ========== PREDICTION =========
