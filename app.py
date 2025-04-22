@@ -14,10 +14,7 @@ from io import StringIO
 st.set_page_config(page_title="Autism Voice Classifier", layout="centered")
 
 st.markdown("<h1 style='text-align: center;'>Autism Voice Classifier</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)</h2>", unsafe_allow_html=True)
-
-#st.title("Autism Voice Classifier")
-#st.subheader("Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)")
+st.markdown("<h2 style='text-align: center;'>Mel-Frequency Cepstral Coefficients (MFCC) with Neuroevolution Augmented Topologies (NEAT)</h2>", unsafe_allow_html=True
 
 # Custom HTML/CSS for the banner
 custom_html = """
@@ -53,7 +50,7 @@ model.eval()
 st.markdown("Upload a `.wav` file or manually adjust features to predict likelihood of Autism.")
 
 # ========== AUDIO FILE UPLOAD ==========
-audio_file = st.file_uploader("Upload a .wav file", type=["wav"])
+audio_file = st.file_uploader("Upload a .wav file", type=["wav","mp3"])
 
 def extract_features_from_audio(file):
     y, sr = librosa.load(file, sr=None)
